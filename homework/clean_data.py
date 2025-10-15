@@ -61,6 +61,13 @@ def create_normalized_key(df):
     return df
 
 
+def save_data(df, output_file):
+    """Guarda el DataFrame en un archivo"""
+
+    df = df.copy()
+    df = df[["raw_text", "cleaned_text"]]
+    df.to_csv(output_file, index=False)
+
 
 def generate_cleaned_text(df):
     """Crea la columna 'cleaned_text' en el DataFrame"""
@@ -91,6 +98,8 @@ def main(input_file, output_file):
     df = create_normalized_key(df)
     df = generate_cleaned_text(df)
     df.to_csv("files/test.csv", index=False)
+    save_data(df, output_file)
+
 
 
 
@@ -100,7 +109,6 @@ if __name__ == "__main__":
         input_file="files/input.txt",
         output_file="files/output.txt",
     )
-
 
 
 
